@@ -7,6 +7,8 @@ emcc helloworld.c -o hello.html
 
 emcc helloworld.c -o output/hello5.html --shell-file ./html_template/my_template.html -s NO_EXIT_RUNTIME=1 -s "EXPORTED_RUNTIME_METHODS=['ccall']"
 
+emcc helloworld.c -o output/hello5.html --shell-file ./html_template/my_template.html -s NO_EXIT_RUNTIME=1 -s "EXPORTED_RUNTIME_METHODS='ccall','cwrap'"
+
 # Run a WebServer
 python3 -m http.server --cgi 8080
 

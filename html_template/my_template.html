@@ -11,16 +11,23 @@
 
             function addNumsTest_ASM(){
 
+                var addNums = Module.cwrap( 
+                    "addNums", // name of C function
+                    "number", // return type
+                    ["number","number"]
+                );
+
                 var a = document.querySelector("#a").value;
                 var b = document.querySelector("#b").value;
 
-                var result = Module.ccall( 
-                    "addNums", // name of C function
-                    "number", // return type
-                    ["number","number"], // argument types
-                    [a,b] // arguments
-                );
-                console.log("addNumsTest_ASM -> "+result);
+                // var result = Module.ccall( 
+                //     "addNums", // name of C function
+                //     "number", // return type
+                //     ["number","number"], // argument types
+                //     [a,b] // arguments
+                // );
+                var result = addNums(a,b);
+                console.log("addNums -> "+result);
                 document.getElementById("result").innerHTML = "<br />"+a+" + "+b+" = "+result;
             }
 
