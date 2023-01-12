@@ -2,11 +2,16 @@
 It is my first example of web assembly. I decided to create a simple page that calculates your uk tax income ... 
 
 
-# How to compile Compile
+# How to compile and run it
 
 ``` bash
 emcc ukTaxCalculator.c  -o output/ukTaxCalculator.js 
 ```
+
+Then, please run a local webserver. (I use "GOLive" in VCode, but can use a python web server ... you cn find it below).
+
+Finally, load the pages/UKTaxCalculator.html page on your browser. 
+
 
 ## examples 
 emcc helloworld.c -o hello.html
