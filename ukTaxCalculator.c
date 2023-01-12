@@ -17,6 +17,7 @@
     It can go down to zero.
 */
 
+//((110000-50270)*0.4) + ((50270-12570)*0.2)+((110000-100000)*0.5)
 
 const float MAX_Personal_Allowance = 12570;
 const float MAX_Basic_rate = 50270;
@@ -50,7 +51,13 @@ EMSCRIPTEN_KEEPALIVE float howMuchTaxes(float income)
     {
         if (income > taxRates[index])
         {
-            taxToPay += (taxRates[index] - taxRates[index - 1]) * taxs[index];
+            //if you are earning more than the last step, the calculation is different
+            if (index == 3)
+            {
+                 taxToPay += (income - taxRates[index - 1]) * taxs[index];
+            }else{
+                taxToPay += (taxRates[index] - taxRates[index - 1]) * taxs[index];
+            }
         }
         else
         {
