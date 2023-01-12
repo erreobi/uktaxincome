@@ -8,7 +8,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <title>First Example</title>
-    <link rel="icon" type="image/x-icon" href="/favicons/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="favicons/favicon.ico" />
 
     <script>
         var exports;
@@ -16,7 +16,7 @@
         var chartIncomeWithoutTaxesData = [];
 
         WebAssembly.instantiateStreaming(
-            fetch("/output/ukTaxCalculator.wasm"), {}
+            fetch("output/ukTaxCalculator.wasm"), {}
         )
             .then(result => exports = result.instance.exports)
             .finally(() => {
