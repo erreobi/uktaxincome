@@ -1,0 +1,35 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>First Example</title>
+    <link rel="icon" type="image/x-icon" href="/favicons/favicon.ico" />
+ 
+    <script>
+        var exports;
+        WebAssembly.instantiateStreaming(
+            fetch("/output/ukTaxCalculator.wasm"), {}
+        ).then(result => exports = result.instance.exports);
+
+        function howMuchTaxes_ASM() {
+            var income = document.querySelector("#income").value;
+        
+            var result = exports.howMuchTaxes(income);
+            console.log("multNums -> " + result);
+            document.getElementById("result").innerHTML = "<br /> you pay £"+ result +" in taxes";
+        }
+
+
+    </script>
+</head>
+
+<body>
+    <h1>UK Tac Calculator</h1>
+
+    How much are you earning per year? <input type="number" id="income" />
+    <button onclick="howMuchTaxes_ASM()"> Calculate </button>
+    <div id="result"></div>
+</body>
+
+</html>

@@ -1,33 +1,103 @@
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>First Example</title>
-        <link rel="icon" type="image/x-icon" href="/favicons/favicon.ico" />
 
-        <script>
-            var exports;
-            WebAssembly.instantiateStreaming(
-                fetch("/output/wasm-streaming.wasm"),{}
-            ).then(result => exports = result.instance.exports);
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>First Example</title>
+    <link rel="icon" type="image/x-icon" href="/favicons/favicon.ico" />
 
-            function multNumsTest_ASM(){ 
-                    var a = document.querySelector("#a").value;
-                    var b = document.querySelector("#b").value;
+    <script>
+        var exports;
+        WebAssembly.instantiateStreaming(
+            fetch("/output/wasm-streaming.wasm"), {}
+        ).then(result => exports = result.instance.exports);
 
-                    var result = exports.multiply(a,b);
-                    console.log("multNums -> "+result);
-                    document.getElementById("result").innerHTML = "<br />"+a+" * "+b+" = "+result;    
-            }
+        function multNumsTest_ASM() {
+            var a = document.querySelector("#a").value;
+            var b = document.querySelector("#b").value;
 
-        </script>
-    </head>
-    <body>
-        <h1>WASM without JS (only wasm)</h1>
+            var result = exports.multiply(a, b);
+            console.log("multNums -> " + result);
+            document.getElementById("result").innerHTML = "<br />" + a + " * " + b + " = " + result;
+        }
 
-        <input type="number" id="a" />
-        <input type="number" id="b" />
-        <button onclick="multNumsTest_ASM()"> Test </button>
-        <div id="result"></div>
-    </body>
+        function generateTiefling() {
+            // Create a canvas element
+            const canvas = document.createElement('canvas');
+            canvas.width = 200;
+            canvas.height = 200;
+
+            // Get the canvas context
+            const ctx = canvas.getContext('2d');
+
+            // Draw the tiefling's face
+            ctx.beginPath();
+            ctx.arc(100, 100, 50, 0, 2 * Math.PI);
+            ctx.fillStyle = '#8b4513';
+            ctx.fill();
+            ctx.stroke();
+
+            // Draw the tiefling's horns
+            ctx.beginPath();
+            ctx.moveTo(70, 70);
+            ctx.lineTo(100, 40);
+            ctx.lineTo(130, 70);
+            ctx.stroke();
+
+            // Draw the tiefling's eyes
+            ctx.beginPath();
+            ctx.arc(85, 85, 5, 0, 2 * Math.PI);
+            ctx.fillStyle = 'white';
+            ctx.fill();
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.arc(115, 85, 5, 0, 2 * Math.PI);
+            ctx.fillStyle = 'white';
+            ctx.fill();
+            ctx.stroke();
+
+            // Draw the tiefling's pupils
+            ctx.beginPath();
+            ctx.arc(85, 85, 2, 0, 2 * Math.PI);
+            ctx.fillStyle = 'black';
+            ctx.fill();
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.arc(115, 85, 2, 0, 2 * Math.PI);
+            ctx.fillStyle = 'black';
+            ctx.fill();
+            ctx.stroke();
+
+            // Draw the tiefling's nose
+            ctx.beginPath();
+            ctx.moveTo(95, 95);
+            ctx.lineTo(105, 95);
+            ctx.stroke();
+
+            // Draw the tiefling's mouth
+            ctx.beginPath();
+            ctx.arc(100, 105, 5, 0, Math.PI);
+            ctx.stroke();
+
+            // Convert the canvas to an image
+            const img = new Image();
+            img.src = canvas.toDataURL();
+            return img;
+        }
+
+    </script>
+</head>
+
+<body>
+    <h1>WASM without JS (only wasm)</h1>
+
+    <input type="number" id="a" />
+    <input type="number" id="b" />
+    <button onclick="multNumsTest_ASM()"> Test </button>
+    <div id="result"></div>
+</body>
+<script>
+            const tieflingImage = generateTiefling();
+        document.body.appendChild(tieflingImage);
+</script>
 </html>
