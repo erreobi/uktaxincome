@@ -29,3 +29,5 @@ python3 -m http.server --cgi 8080
 [Really good tutorial](https://www.youtube.com/watch?v=RSLHrmDL4kU)
 
 [Nice explanation tutorial](https://marcoselvatici.github.io/WASM_tutorial/)
+
+https://developer.mozilla.org/en-US/docs/WebAssembly/C_to_wasm
